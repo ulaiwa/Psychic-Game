@@ -18,7 +18,7 @@ var updateGuessLeft = function() {
 var updatecomputerGuess = function() {
   this.computerGuess = this.alphabets[Math.floor(Math.random() * this.alphabets.length)];
 };
-var updateGuessSoFar = function() {
+var updateuserGuess = function() {
 	document.querySelector('#guessSoFar').innerHTML = "Your Guesses so far: " + guessSoFar.join(', ');
 };
 
@@ -29,7 +29,7 @@ var reset = function() {
 
   updatecomputerGuess();
   updateGuessLeft();
-  updateGuessSoFar();
+  updateuserGuess();
 }
 
 updatecomputerGuess();
@@ -42,7 +42,7 @@ document.onkeypress = function(event) {
 
   guessSoFar.push(userGuess);
   updateGuessLeft();
-  updateGuessSoFar();
+  updateuserGuess();
 
     if (guessLeft > 0){
         if (userGuess == computerGuess){
