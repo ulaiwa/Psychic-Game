@@ -19,7 +19,7 @@ var updatecomputerGuess = function() {
   this.computerGuess = this.alphabets[Math.floor(Math.random() * this.alphabets.length)];
 };
 var updateGuessSoFar = function() {
-	document.querySelector('#guessSoFar').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
+	document.querySelector('#guessSoFar').innerHTML = "Your Guesses so far: " + guessSoFar.join(', ');
 };
 
 // Function will be called when reset
