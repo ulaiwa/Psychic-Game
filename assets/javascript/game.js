@@ -7,32 +7,55 @@ var guessSoFar = [];
 // userGuess is what the user picks by pressing each key
 var userGuess = null;
 
-//Let the computer select a random letter from alphabets
+//computer randomize letter from alphabets
 var computerGuess = alphabets[Math.floor(Math.random() * alphabets.length)];
 
-//store each letter that user press
-console.log("Wins: " + wins + " Losses: " + losses + " Guesses Left: " + guess Left + " Guesses so far: " + guessSoFar + " Computer picked: " + computerGuess);
+//update guess once user press a key
+var updateGuessLeft = function() {
+	document.querySelector('#guessLeft').innerHTML = "Guesses left: " + guessLeft;
+};
 
-//if userGuess match computerGuess, wins add up, if not, loss add up
-document.onkeypress = function() {
-	if (userGuess === computerGuess) {
-		wins++;
-		guessLeft --;
-		else (
-			losses++;
-			)
-	}
+var updatecomputerGuess = function() {
+  this.computerGuess = this.alphabets[Math.floor(Math.random() * this.alphabets.length)];
+};
+var updateGuessSoFar = function() {
+	document.querySelector('#guessSoFar').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
+};
+
+// Function will be called when reset
+var reset = function() {
+  totalGuesses = 9;
+  guessesLeft = 9;
+  guessedLetters = [];
+
+  updatecomputerGuess();
+  updateGuessLeft();
+  updateGuessSoFar();
 }
 
-//
+updatecomputerGuess();
+updateGuessLeft();
 
-//reset the game
+//When key is released it becomes the users guess
+document.onkeyup = function(event) {
+    guessLeft--;
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-if (guessLeft == 0) {
-	losses++;
-	console.log("You lost!");
-	guessesLeft = 9;
-	guessesSoFar = [];
-	letterToBeGuessed = alphabetLetters[Math.floor(Math.random() * alphabetLetters.length)];
-	console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Guesses so far: " + guessesSoFar + " Computer picked: " + letterToBeGuessed);
-}
+  guessedLetters.push(userGuess);
+  updateGuessLeft();
+  updateGuessSoFar();
+
+    if (guessLeft > 0){
+        if (userGuess == computerGuess){
+            wins++;
+            document.querySelector('#wins').innerHTML = "Wins: " + wins;
+            alert("woah you are psychic!");
+            reset();
+        }
+    }else if(guessLeft == 0){
+        losses++;
+        document.querySelector('#losses').innerHTML = "Losses: " + losses;
+        alert("try again?");
+        reset();
+    }
+};
