@@ -24,7 +24,6 @@ var updateGuessSoFar = function() {
 
 // Function will be called when reset
 var reset = function() {
-  userGuess = 9;
   guessesLeft = 9;
   guessSoFar = [];
 
@@ -37,7 +36,7 @@ updatecomputerGuess();
 updateGuessLeft();
 
 //When key is released it becomes the users guess
-document.onkeyup = function(event) {
+document.onkeypress = function(event) {
     guessLeft--;
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
