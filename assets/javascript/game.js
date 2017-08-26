@@ -26,7 +26,7 @@ var updateGuessSoFar = function() {
 var reset = function() {
   totalGuesses = 9;
   guessesLeft = 9;
-  guessedLetters = [];
+  guessSoFar = [];
 
   updatecomputerGuess();
   updateGuessLeft();
@@ -41,7 +41,7 @@ document.onkeyup = function(event) {
     guessLeft--;
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-  guessedLetters.push(userGuess);
+  guessSoFar.push(userGuess);
   updateGuessLeft();
   updateGuessSoFar();
 
